@@ -91,12 +91,12 @@ async function gerarPix(valorCentavos) {
       pagarBtn.textContent = "Pix gerado!";
     } else {
       alert("Erro ao gerar Pix: resposta incompleta.");
-      pagarBtn.textContent = "QUERO MINHA NOITE COM A JOYCE! (Pagar via PIX)";
+      pagarBtn.textContent = "QUERO MINHA NOITE COM A REEH! (Pagar via PIX)";
     }
   } catch (error) {
     console.error(error);
     alert("Erro de conexão com a PushinPay.");
-    pagarBtn.textContent = "QUERO MINHA NOITE COM A JOYCE! (Pagar via PIX)";
+    pagarBtn.textContent = "QUERO MINHA NOITE COM A REEH! (Pagar via PIX)";
   }
 
   pagarBtn.disabled = false;
