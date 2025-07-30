@@ -10,10 +10,16 @@ const precoUnitario = 3.99;
 const pushinpayToken = "39575|BeCNctiQk9McJHGJaXQfLTPs5uygHA4WVaHwDXQM57b40cc8";
 const webhookURL = "https://seu-site.com/pushinpay-webhook"; // substitua pela sua URL
 
+let pixJaGerado = false; // <- flag de controle para o modal
+
 slider.addEventListener("input", () => {
     const qtd = parseInt(slider.value);
     num.textContent = qtd;
     valor.textContent = (qtd * precoUnitario).toFixed(2).replace(".", ",");
+
+    // Atualiza preenchimento visual da barra (WebKit)
+    const percentual = (qtd / parseInt(slider.max)) * 100;
+    slider.style.setProperty("--progress", `${percentual}%`);
 });
 
 pagarBtn.addEventListener("click", async () => {
@@ -49,16 +55,19 @@ async function gerarPix(valorCentavos) {
         const qrCodeImage = data?.qr_code_base64;
 
         if (qrCode && qrCodeImage) {
-            // Oculta o bloco de compra
+            pixJaGerado = true; // <- impede o modal depois
+
             document.getElementById("compraSection").style.display = "none";
 
-            // Mostra o QR Code no bloco fixo
             qrImg.src = qrCodeImage.startsWith("data:image")
                 ? qrCodeImage
                 : "data:image/png;base64," + qrCodeImage;
 
             pixCodeField.value = qrCode;
             pixForm.style.display = "block";
+
+            // Scroll suave até o Pix gerado
+            pixForm.scrollIntoView({ behavior: "smooth", block: "start" });
 
             pagarBtn.textContent = "Pix gerado!";
         } else {
@@ -76,6 +85,7 @@ async function gerarPix(valorCentavos) {
 
 // Modal
 function openOfferModal() {
+    if (pixJaGerado) return; // <- evita exibir se já gerou Pix
     document.getElementById("offerModal").style.display = "flex";
 }
 
@@ -83,13 +93,11 @@ function closeOfferModal() {
     document.getElementById("offerModal").style.display = "none";
 }
 
-// Pix com desconto (botão verde do modal)
 async function gerarPixDesconto() {
     await gerarPix(2990); // R$ 29,90
     closeOfferModal();
 }
 
-// Copiar código Pix do bloco fixo
 function copiarPix() {
     const campo = document.getElementById("pixCodeField");
     campo.select();
@@ -98,19 +106,21 @@ function copiarPix() {
 }
 
 function setSorteioData() {
-  const hoje = new Date();
-  hoje.setDate(hoje.getDate() + 3); // adiciona 3 dias
+    const hoje = new Date();
+    hoje.setDate(hoje.getDate() + 3);
+    const dia = String(hoje.getDate()).padStart(2, '0');
+    const mes = String(hoje.getMonth() + 1).padStart(2, '0');
+    const ano = hoje.getFullYear();
+    const dataFormatada = `${dia}/${mes}/${ano}`;
+    document.getElementById("sorteioData").textContent = dataFormatada;
+}
 
-  const dia = String(hoje.getDate()).padStart(2, '0');
-  const mes = String(hoje.getMonth() + 1).padStart(2, '0');
-  const ano = hoje.getFullYear();
-
-  const dataFormatada = `${dia}/${mes}/${ano}`;
-  document.getElementById("sorteioData").textContent = dataFormatada;
+function voltarEscolha() {
+  pixForm.style.display = "none";
+  document.getElementById("compraSection").style.display = "block";
+  pagarBtn.textContent = "QUERO MINHA NOITE COM A REEH! (Pagar via PIX)";
 }
 
 setSorteioData();
-
-// Exibe o modal após 15s
 setTimeout(openOfferModal, 15000);
-
+slider.dispatchEvent(new Event("input")); // inicializa preenchimento

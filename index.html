@@ -2,112 +2,128 @@
 <html lang="pt-BR">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rifa VIP - Reeh Botinsk</title>
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rifa VIP - Reeh Botinsk</title>
+    <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-  <header>
-    <img src="assets/banner.jpeg" alt="Banner Reeh" class="banner" />
-  </header>
+    <header>
+        <img src="assets/banner.jpeg" alt="Banner Reeh" class="banner" />
+    </header>
 
-  <main>
-    <section class="profile">
-      <img src="assets/avatar.jpeg" alt="Reeh" class="avatar" />
-      <h1>Reeh Botinsk</h1>
-      <p class="username">@reehbot</p>
-      <p class="bio">
-        Tenho 24 anos, e sim, sou sua putinha! Meu conteúdo é completo e EXPLÍCITO, feito pra você gozar muito!
-        Adoro uma interação no chat, então vem participar dessa rifa VIP e ter uma noite inesquecível comigo! ❤️
-      </p>
-    </section>
+    <main>
+        <section class="profile">
+            <img src="assets/avatar.jpeg" alt="Reeh" class="avatar" />
+            <h1>Reeh Botinsk</h1>
+            <p class="username">@reehbot</p>
+            <p class="bio">
+                Tenho 24 anos, e sim, sou sua putinha! Meu conteúdo é completo e EXPLÍCITO, feito pra você gozar muito!
+                Adoro uma interação no chat, então vem participar dessa rifa VIP e ter uma noite inesquecível comigo! ❤️
+            </p>
+        </section>
 
-    <section class="galeria">
-      <img src="assets/galeria1.jpeg" alt="Prévia 1" />
-      <img src="assets/galeria2.jpeg" alt="Prévia 2" />
-      <img src="assets/galeria4.jpeg" alt="Prévia 3" />
-      <img src="assets/galeria3.jpeg" alt="Prévia 4" />
-    </section>
+        <section class="padding">
+        <section class="galeria">
+            <img src="assets/galeria1.jpeg" alt="Prévia 1" />
+            <img src="assets/galeria2.jpeg" alt="Prévia 2" />
+            <img src="assets/galeria4.jpeg" alt="Prévia 3" />
+            <img src="assets/galeria3.jpeg" alt="Prévia 4" />
+        </section>
 
-    <section class="rifa">
-      <h2>🔥 Rifa VIP: Sua Noite de Tesão com Reeh Botinsk! 🔥</h2>
+        <section class="rifa">
+            <h2>🔥 Rifa VIP: Sua Noite de Tesão com Reeh Botinsk! 🔥</h2>
 
-      <!-- Benefícios -->
-      <div class="benefits-grid">
-        <div class="benefit">
-          <img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" alt="check" />
-          <span>UMA NOITE COMPLETA COM A REEH!</span>
+            <div class="benefits-grid">
+                <div class="benefit"><img src="https://cdn-icons-png.flaticon.com/512/845/845646.png"
+                        alt="check" /><span>UMA NOITE COMPLETA COM A REEH!</span></div>
+                <div class="benefit"><img src="https://cdn-icons-png.flaticon.com/512/845/845646.png"
+                        alt="check" /><span>SEM CAMISINHA!</span></div>
+                <div class="benefit"><img src="https://cdn-icons-png.flaticon.com/512/845/845646.png"
+                        alt="check" /><span>ANAL INCLUSO!</span></div>
+                <div class="benefit"><img src="https://cdn-icons-png.flaticon.com/512/845/845646.png"
+                        alt="check" /><span>MOTEL PAGO POR ELA!</span></div>
+            </div>
+
+            <!-- Sorteio -->
+            <div class="sorteio-bloco">
+                <p class="sorteio-label">📅 Sorteio IMPERDÍVEL:</p>
+                <p class="sorteio-data" id="sorteioData"></p>
+            </div>
+        </section>
+
+        <!-- Bloco de compra FORA da seção rifa -->
+        <div id="compraSection" class="compra-card">
+            <p class="cta">Garanta sua chance AGORA! <br> Apenas <strong>R$3,99</strong> por número.</p>
+
+            <div class="resumo-compra">
+                <p class="output">🎟️ Você quer <strong><span id="num">1</span></strong> número(s)</p>
+                <p class="total">💰 TOTAL: <strong>R$ <span id="valor">3,99</span></strong></p>
+            </div>
+
+            <label for="qtd" class="slider-label">Arraste e escolha a quantidade:</label>
+            <input type="range" id="qtd" min="1" max="35" value="1" />
+
+            <button id="pagarBtn">Quero minha noite com a Reeh!<br>(Pagar via PIX)</button>
         </div>
-        <div class="benefit">
-          <img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" alt="check" />
-          <span>SEM CAMISINHA!</span>
+
+        <!-- QR Code Pix -->
+        <div id="pixForm" style="display: none; margin-top: 2rem;">
+            <h3>🔗 QR Code Pix</h3>
+            <img id="pixQrCodeImage" src="" alt="QR Code Pix"
+                style="max-width: 60%; border-radius: 8px; margin-bottom: 1rem; display: block; margin-left: auto; margin-right: auto;">
+            <textarea id="pixCodeField" readonly style="width: 100%; height: 100px;"></textarea>
+            <button onclick="copiarPix()">Copiar Pix</button>
+             <button onclick="voltarEscolha()" style="margin-top: 1rem;">Voltar</button>
         </div>
-        <div class="benefit">
-          <img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" alt="check" />
-          <span>ANAL INCLUSO!</span>
+
+        <section class="regras">
+            <h3>Regras da Rifa</h3>
+            <ul>
+                <li>📅 Sorteio: <span id="regraSorteioData">--/--/----</span></li>
+                <li>📞 Ganhador será contatado pelos dados do pagamento.</li>
+                <li>💰 R$3,99 por número, sem limite de compra.</li>
+                <li>🎁 Prêmio: Noite completa conforme descrição.</li>
+                <li>🔁 Novo sorteio após 7 dias se não houver contato.</li>
+                <li>🔒 Seus dados são 100% privados.</li>
+            </ul>
+        </section>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+
+    <!-- Modal de Oferta -->
+    <div id="offerModal" class="modal-overlay">
+        <div class="modal">
+            <h2><span class="highlight">🎉 OFERTA ESPECIAL! 🎉</span></h2>
+            <p>
+                Compre <strong>10 números</strong> com um super desconto!<br />
+                De <s>R$ 39,90</s> por apenas <strong class="price-green">R$ 29,90</strong>!<br />
+                Aumente suas chances em 100%!
+            </p>
+            <button class="btn-confirm" onclick="gerarPixDesconto()">QUERO 10 NÚMEROS COM DESCONTO!</button>
+            <button class="btn-decline" onclick="closeOfferModal()">Não, obrigado(a). Continuar com a seleção
+                atual.</button>
         </div>
-        <div class="benefit">
-          <img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" alt="check" />
-          <span>MOTEL PAGO POR ELA!</span>
-        </div>
-      </div>
-
-      <!-- Sorteio -->
-      <div class="sorteio-bloco">
-        <p class="sorteio-label">📅 Sorteio IMPERDÍVEL:</p>
-        <p class="sorteio-data" id="sorteioData"></p>
-      </div>
-
-      <!-- Bloco de compra -->
-      <div id="compraSection">
-        <p class="cta">Garanta sua chance AGORA! Apenas <strong>R$3,99</strong> por número.</p>
-        <label for="qtd">Escolha quantos números:</label>
-        <input type="range" id="qtd" min="1" max="37" value="1" />
-        <p class="output">Você quer <span id="num">1</span> número(s)?</p>
-        <p class="total">TOTAL: R$ <span id="valor">3,99</span></p>
-        <button id="pagarBtn">QUERO MINHA NOITE COM A REEH! (Pagar via PIX)</button>
-      </div>
-
-      <!-- QR Code Pix -->
-      <div id="pixForm" style="display: none; margin-top: 2rem;">
-        <h3>🔗 QR Code Pix</h3>
-        <img id="pixQrCodeImage" src="" alt="QR Code Pix"
-          style="max-width: 100%; border-radius: 8px; margin-bottom: 1rem;">
-        <textarea id="pixCodeField" readonly style="width: 100%; height: 100px;"></textarea>
-        <button onclick="copiarPix()">Copiar código Pix</button>
-      </div>
-    </section>
-
-    <section class="regras">
-      <h3>Regras da Rifa</h3>
-      <ul>
-        <li>📅 Sorteio: 05/08/2025</li>
-        <li>📞 Ganhador será contatado pelos dados do pagamento.</li>
-        <li>💰 R$3,99 por número, sem limite de compra.</li>
-        <li>🎁 Prêmio: Noite completa conforme descrição.</li>
-        <li>🔁 Novo sorteio após 7 dias se não houver contato.</li>
-        <li>🔒 Seus dados são 100% privados.</li>
-      </ul>
-    </section>
-  </main>
-
-  <script src="script.js"></script>
-
-  <!-- Modal de Oferta -->
-  <div id="offerModal" class="modal-overlay">
-    <div class="modal">
-      <h2><span class="highlight">🎉 OFERTA ESPECIAL! 🎉</span></h2>
-      <p>
-        Compre <strong>10 números</strong> com um super desconto!<br />
-        De <s>R$ 39,90</s> por apenas <strong class="price-green">R$ 29,90</strong>!<br />
-        Aumente suas chances em 100%!
-      </p>
-      <button class="btn-confirm" onclick="gerarPixDesconto()">QUERO 10 NÚMEROS COM DESCONTO!</button>
-      <button class="btn-decline" onclick="closeOfferModal()">Não, obrigado(a). Continuar com a seleção atual.</button>
     </div>
-  </div>
+
+    <script>
+        // Atualiza data dos sorteios (ambos)
+        function atualizarDatas() {
+            const hoje = new Date();
+            hoje.setDate(hoje.getDate() + 3);
+            const dia = String(hoje.getDate()).padStart(2, '0');
+            const mes = String(hoje.getMonth() + 1).padStart(2, '0');
+            const ano = hoje.getFullYear();
+            const data = `${dia}/${mes}/${ano}`;
+
+            document.getElementById("sorteioData").textContent = data;
+            document.getElementById("regraSorteioData").textContent = data;
+        }
+        atualizarDatas();
+    </script>
 </body>
 
 </html>
