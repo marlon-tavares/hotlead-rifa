@@ -306,76 +306,119 @@ textarea, input[type="text"] {
 
 .modal-overlay {
   position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
   z-index: 999;
   display: none;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.5s ease-in-out;
 }
 
 .modal {
   background: #fff;
-  padding: 2rem;
   border-radius: 16px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-  max-width: 360px;
+  padding: 2rem;
+  max-width: 340px;
   width: 90%;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
   text-align: center;
+  font-family: 'Poppins', sans-serif;
   position: relative;
 }
 
 .modal h2 {
-  font-size: 1.2rem;
-  color: #e6007e;
-  margin-bottom: 0.5rem;
-}
-
-.modal .highlight {
-  color: #e6007e;
-}
-
-.modal .price-green {
-  color: #28a745;
-  font-weight: bold;
+  color: #ff007a;
+  font-size: 1.4rem;
+  margin-bottom: 0.6rem;
+  white-space: nowrap; /* evita quebra de linha */
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .modal p {
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: #333;
-  margin-bottom: 1.5rem;
+  margin: 0.6rem 0;
+}
+
+.modal s {
+  color: #888;
+}
+
+.highlight {
+  color: #ff007a;
+  font-weight: bold;
+}
+
+.price-green {
+  color: #00c75f;
+  font-weight: bold;
+}
+
+.btn-confirm {
+  background: linear-gradient(135deg, #ff007a, #ff5e8e);
+  color: white;
+  font-weight: bold;
+  padding: 0.9rem 1.5rem;
+  border: none;
+  border-radius: 10px;
+  margin-top: 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.btn-confirm:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 12px rgba(255, 0, 122, 0.4);
+}
+
+.btn-decline {
+  background: #f1f1f1;
+  color: #666;
+  padding: 0.7rem 1.2rem;
+  border: none;
+  border-radius: 10px;
+  margin-top: 0.8rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.3s ease;
+}
+
+.btn-decline:hover {
+  background: #ddd;
 }
 
 .modal-close {
   position: absolute;
-  top: 10px;
-  right: 14px;
-  border: none;
+  top: 8px;
+  right: 12px;
+  font-size: 1.4rem;
   background: none;
-  font-size: 1.5rem;
+  border: none;
+  color: #999;
   cursor: pointer;
+  line-height: 1;
+  z-index: 10;
 }
 
-.btn-confirm {
-  background: #28a745;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 0.8rem 1rem;
-  width: 100%;
-  margin-bottom: 0.8rem;
-  font-weight: bold;
-  cursor: pointer;
+.modal-close:hover {
+  color: #ff007a;
 }
 
-.btn-decline {
-  background: #f3f3f3;
-  color: #333;
-  border: none;
-  border-radius: 8px;
-  padding: 0.7rem 1rem;
-  width: 100%;
-  font-size: 0.9rem;
-  cursor: pointer;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }

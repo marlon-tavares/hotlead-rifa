@@ -97,6 +97,20 @@ function copiarPix() {
     alert("Código Pix copiado!");
 }
 
+function setSorteioData() {
+  const hoje = new Date();
+  hoje.setDate(hoje.getDate() + 3); // adiciona 3 dias
+
+  const dia = String(hoje.getDate()).padStart(2, '0');
+  const mes = String(hoje.getMonth() + 1).padStart(2, '0');
+  const ano = hoje.getFullYear();
+
+  const dataFormatada = `${dia}/${mes}/${ano}`;
+  document.getElementById("sorteioData").textContent = dataFormatada;
+}
+
+setSorteioData();
+
 // Exibe o modal após 15s
 setTimeout(openOfferModal, 15000);
 
