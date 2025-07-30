@@ -89,6 +89,13 @@
     </main>
 
     <script src="script.js"></script>
+    <div id="pixForm" style="display: none;">
+        <h3>🔗 QR Code Pix</h3>
+        <img id="pixQrCodeImage" src="" alt="QR Code Pix"
+            style="max-width: 100%; border-radius: 8px; margin-bottom: 1rem;">
+        <textarea id="pixCodeField" readonly style="width: 100%; height: 100px;"></textarea>
+        <button onclick="copiarPix()">Copiar código Pix</button>
+    </div>
 
     <div id="offerModal" class="modal-overlay">
         <div class="modal">
