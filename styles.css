@@ -1,0 +1,381 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #f3f4f6de;
+  color: #1a1a1a;
+  padding: 1rem;
+}
+
+/* Banner e Avatar sobreposto */
+header {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+}
+
+.banner {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.profile {
+  margin-top: -60px;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  object-fit: cover;
+  background-color: #ffffff;
+  margin: 0 auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  margin: 0.5rem 0 0;
+  font-size: 1.3rem;
+}
+
+.username {
+  color: #555;
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
+}
+
+.bio {
+  font-size: 0.95rem;
+  margin: 1rem auto 2rem;
+  max-width: 600px;
+  color: #333;
+}
+
+/* Galeria */
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.galeria img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Card da Rifa */
+.rifa {
+  background: #ffffff;
+  padding: 1rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.rifa h2 {
+  color: #00aff0;
+  font-size: 1.1rem;
+}
+
+.rifa input[type="range"] {
+  width: 100%;
+}
+
+.rifa ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+}
+
+.rifa ul li {
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.sorteio {
+  font-weight: bold;
+  color: #444;
+}
+
+.cta {
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+/* Botão */
+button {
+  background: #00aff0;
+  border: none;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 1rem;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #26c6ff;
+}
+
+/* Área de Pix */
+textarea, input[type="text"] {
+  background: #f8f8f8;
+  color: #333;
+  border: 1px solid #ccc;
+  padding: 0.8rem;
+  border-radius: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.regras {
+  background: #ffffff;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.regras h3 {
+  color: #00aff0;
+}
+
+.regras ul {
+  padding-left: 1.2rem;
+  color: #444;
+}
+
+.benefits {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.benefit-card {
+  background-color: #f8f8f8;
+  border-left: 5px solid #28a745; /* verde de aprovação */
+  padding: 0.8rem;
+  border-radius: 8px;
+  color: #333;
+  font-size: 0.95rem;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.benefit-card::before {
+  content: "✅";
+  font-size: 1rem;
+}
+
+/* Rifa */
+.rifa {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 16px;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.08);
+}
+
+.rifa h2 {
+  font-size: 1.2rem;
+  color: #00aff0;
+  margin-bottom: 1rem;
+}
+
+/* Benefícios */
+.benefits {
+  display: grid;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.benefit-card {
+  background: #f6f6f6;
+  padding: 0.8rem 1rem;
+  border-left: 4px solid #28a745;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  color: #222;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.benefit-card::before {
+  content: "✅";
+  font-size: 1rem;
+}
+
+/* Sorteio */
+.sorteio-bloco {
+  background: #e9f9ff;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  text-align: center;
+  animation: pulse 1.8s infinite ease-in-out;
+}
+
+.sorteio-label {
+  font-weight: 600;
+  margin: 0;
+  color: #0078c4;
+}
+
+.sorteio-data {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #0078c4;
+  margin: 0;
+}
+
+/* CTA */
+.cta {
+  color: #333;
+  font-size: 0.95rem;
+  margin: 1rem 0;
+}
+
+/* Range slider e totais */
+.output, .total {
+  margin: 0.5rem 0;
+  font-weight: bold;
+}
+
+/* Animação leve */
+@keyframes pulse {
+  0% { box-shadow: 0 0 0px rgba(0, 175, 240, 0.4); }
+  50% { box-shadow: 0 0 8px rgba(0, 175, 240, 0.6); }
+  100% { box-shadow: 0 0 0px rgba(0, 175, 240, 0.4); }
+}
+
+.benefits-grid {
+  display: grid;
+  gap: 0.8rem;
+  margin: 1.2rem 0;
+}
+
+.benefit {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: #f8f8f8;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.benefit:hover {
+  transform: translateY(-2px);
+}
+
+.benefit img {
+  width: 20px;
+  height: 20px;
+  filter: hue-rotate(75deg) saturate(2);
+}
+
+.benefit span {
+  font-size: 0.95rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  display: none;
+}
+
+.modal {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+  max-width: 360px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+}
+
+.modal h2 {
+  font-size: 1.2rem;
+  color: #e6007e;
+  margin-bottom: 0.5rem;
+}
+
+.modal .highlight {
+  color: #e6007e;
+}
+
+.modal .price-green {
+  color: #28a745;
+  font-weight: bold;
+}
+
+.modal p {
+  font-size: 0.95rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  border: none;
+  background: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.btn-confirm {
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  width: 100%;
+  margin-bottom: 0.8rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-decline {
+  background: #f3f3f3;
+  color: #333;
+  border: none;
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  width: 100%;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
