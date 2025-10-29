@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sorteio Encerrado - Daisy</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+        }
+
+        .encerrado-container {
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .icon-confetti {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        h1 {
+            color: #9c27b0;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .message {
+            font-size: 1.1rem;
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+        }
+
+        .info-box p {
+            margin: 0.5rem 0;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .footer-message {
+            color: #999;
+            font-size: 0.85rem;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .logo {
+            max-width: 100px;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="encerrado-container">
+        <div class="icon-confetti">🎊</div>
+
+        <h1>Sorteio Realizado!</h1>
+
+        <div class="message">
+            <p>O sorteio já foi realizado! 🎉</p>
+            <p>Se você foi o ganhador, já deve ter sido contatado pelos dados do pagamento.</p>
+        </div>
+
+        <div class="info-box">
+            <p><strong>📞 Dúvidas?</strong></p>
+            <p>Entre em contato conosco se tiver alguma questão sobre o resultado.</p>
+        </div>
+
+        <div class="info-box" style="background: linear-gradient(135deg, #e3f2fd, #bbdefb);">
+            <p><strong>🔁 Próximos Sorteios</strong></p>
+            <p>Fique atento! Em breve teremos novos sorteios imperdíveis!</p>
+        </div>
+
+        <div class="footer-message">
+            <p>Obrigada pela sua participação! ❤️</p>
+            <p style="margin-top: 0.5rem; font-size: 0.75rem;">
+                Seus dados estão seguros e são 100% privados.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Proteção contra acesso via Desktop
+        function checkDeviceAndRedirect() {
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+            if (!isMobile) {
+                window.location.href = 'https://www.google.com.br';
+                return false;
+            }
+
+            return true;
+        }
+
+        // Executa verificação
+        if (!checkDeviceAndRedirect()) {
+            throw new Error('Desktop access not allowed');
+        }
+
+        // Verifica se realmente deve estar nesta página
+        function verificarAcesso() {
+            const paymentData = localStorage.getItem('payment_data');
+
+            // Se não tiver dados de pagamento, redireciona para home
+            if (!paymentData) {
+                window.location.href = '/';
+                return;
+            }
+
+            try {
+                const data = JSON.parse(paymentData);
+
+                // Verifica se o sorteio já foi realizado
+                const drawDate = new Date(data.drawDate);
+                const hoje = new Date();
+                hoje.setHours(0, 0, 0, 0);
+                drawDate.setHours(0, 0, 0, 0);
+
+                const diffTime = drawDate - hoje;
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+                // Se o sorteio ainda não aconteceu, redireciona para home
+                if (diffDays > 0) {
+                    window.location.href = '/';
+                }
+            } catch (error) {
+                // Se houver erro ao parsear, redireciona para home
+                window.location.href = '/';
+            }
+        }
+
+        verificarAcesso();
+    </script>
+</body>
+
+</html>

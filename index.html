@@ -60,21 +60,122 @@
                 <p class="total">💰 TOTAL: <strong>R$ <span id="valor">3,99</span></strong></p>
             </div>
 
+            <!-- Alerta do Grupo VIP -->
+            <div id="vipAlert" style="background: linear-gradient(135deg, #FF6B6B, #FF8E53); padding: 1rem; border-radius: 8px; margin: 1rem 0; text-align: center; border: 2px solid #FF4757; animation: pulse 2s infinite;">
+                <p style="margin: 0; color: white; font-weight: bold; font-size: 1.1rem;">
+                    🎁 BÔNUS EXCLUSIVO!
+                </p>
+                <p style="margin: 0.5rem 0 0 0; color: white; font-size: 0.95rem;">
+                    Comprando <strong>2 ou mais números</strong>, você ganha acesso ao <strong>GRUPO VIP</strong> no Telegram com conteúdos exclusivos! 🔥
+                </p>
+            </div>
+
             <label for="qtd" class="slider-label">Arraste e escolha a quantidade:</label>
             <input type="range" id="qtd" min="1" max="35" value="1" />
 
-            <button id="pagarBtn">Quero minha noite com a Reeh!<br>(Pagar via PIX)</button>
+            <button id="pagarBtn">Quero minha noite com a Daisy!<br>(Pagar via PIX)</button>
         </div>
 
-        <!-- QR Code Pix -->
+        <style>
+            @keyframes pulse {
+                0%, 100% { transform: scale(1); }
+                50% { transform: scale(1.02); }
+            }
+
+            @keyframes blink {
+                0%, 100% { opacity: 1; }
+                50% { opacity: 0.5; }
+            }
+        </style>
+
+        <!-- Pix Copia e Cola -->
         <div id="pixForm" style="display: none; margin-top: 2rem;">
-            <h3>🔗 QR Code Pix</h3>
-            <img id="pixQrCodeImage" src="" alt="QR Code Pix"
-                style="max-width: 60%; border-radius: 8px; margin-bottom: 1rem; display: block; margin-left: auto; margin-right: auto;">
-            <textarea id="pixCodeField" readonly style="width: 100%; height: 100px;"></textarea>
-            <button onclick="copiarPix()">Copiar Pix</button>
-             <button onclick="voltarEscolha()" style="margin-top: 1rem;">Voltar</button>
+            <div class="compra-card">
+                <h3 style="text-align: center; color: #4CAF50; margin-bottom: 1rem;">💳 Pix Gerado com Sucesso!</h3>
+
+                <!-- Timer -->
+                <div id="pixTimer" style="background: linear-gradient(135deg, #FF6B6B, #FF8E53); padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; text-align: center;">
+                    <p style="margin: 0; color: white; font-weight: bold; font-size: 0.9rem;">
+                        ⏰ Tempo para realizar o pagamento:
+                    </p>
+                    <p id="timerDisplay" style="margin: 0.5rem 0 0 0; color: white; font-size: 2rem; font-weight: bold; font-family: 'Courier New', monospace;">
+                        05:00
+                    </p>
+                </div>
+
+                <p style="text-align: center; margin-bottom: 1rem; font-size: 1rem;">
+                    Copie o código abaixo e cole no seu aplicativo de banco:
+                </p>
+
+                <textarea id="pixCodeField" readonly style="width: 100%; height: 120px; padding: 1rem; border: 2px solid #4CAF50; border-radius: 8px; font-family: monospace; font-size: 0.85rem; resize: none; margin-bottom: 1rem;"></textarea>
+
+                <button onclick="copiarPix()" style="width: 100%; padding: 1rem; font-size: 1.1rem; background: linear-gradient(135deg, #4CAF50, #45a049); color: white; border: none; border-radius: 8px; cursor: pointer; margin-bottom: 0.5rem;">
+                    📋 Copiar Código Pix
+                </button>
+
+                <button onclick="voltarEscolha()" style="width: 100%; padding: 0.8rem; font-size: 0.95rem; background: #666; color: white; border: none; border-radius: 8px; cursor: pointer;">
+                    ← Voltar
+                </button>
+
+                <p style="margin-top: 1.5rem; text-align: center; color: #666; font-size: 0.9rem;">
+                    ⏱️ Aguardando confirmação do pagamento...<br>
+                    <small>O pagamento será confirmado automaticamente.</small>
+                </p>
+            </div>
         </div>
+
+        <!-- Tela de Entrega (2+ números) -->
+        <div id="deliveryScreen" style="display: none; margin-top: 2rem;">
+            <div class="compra-card" style="text-align: center;">
+                <h2 style="color: #4CAF50; margin-bottom: 1rem;">✅ Pagamento Confirmado!</h2>
+                <p style="margin-bottom: 1.5rem; font-size: 1.1rem;">
+                    🎉 Parabéns! Seu pagamento foi confirmado com sucesso!<br>
+                    Agora você já está concorrendo ao prêmio!
+                </p>
+                <p style="margin-bottom: 2rem;">
+                    📱 Acesse nosso grupo VIP no Telegram para acompanhar o sorteio e ficar por dentro de todas as novidades:
+                </p>
+                <button id="telegramAccessBtn" onclick="acessarGrupoTelegram()" style="padding: 1rem 2rem; font-size: 1.1rem; background: linear-gradient(135deg, #0088cc, #005f8a); color: white; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.2s; width: 100%;">
+                    📲 Acessar Grupo do Telegram
+                </button>
+                <p style="margin-top: 2rem; font-size: 0.9rem; color: #666;">
+                    Boa sorte! 🍀
+                </p>
+            </div>
+        </div>
+
+        <!-- Tela de Agradecimento (1 número) -->
+        <div id="thankYouScreen" style="display: none; margin-top: 2rem;">
+            <div class="compra-card" style="text-align: center;">
+                <h2 style="color: #4CAF50; margin-bottom: 1rem;">✅ Pagamento Confirmado!</h2>
+                <p style="margin-bottom: 1.5rem; font-size: 1.1rem;">
+                    🎉 Muito obrigada pela sua participação!<br>
+                    Seu número já está concorrendo ao prêmio!
+                </p>
+                <p style="margin-bottom: 1rem;">
+                    📅 O sorteio será realizado em: <strong id="thankYouSorteioData"></strong>
+                </p>
+                <p style="color: #666; font-size: 0.95rem;">
+                    Você será contatado pelos dados do pagamento caso seja o ganhador.<br>
+                    Boa sorte! 🍀
+                </p>
+            </div>
+        </div>
+
+        <!-- Tela de Timeout (tempo expirado) -->
+        <div id="timeoutScreen" style="display: none; margin-top: 2rem;">
+            <div class="compra-card" style="text-align: center;">
+                <h2 style="color: #ff6b6b; margin-bottom: 1rem;">⏱️ Tempo Expirado!</h2>
+                <p style="margin-bottom: 1.5rem; font-size: 1.1rem;">
+                    O tempo para realizar o pagamento expirou.<br>
+                    Não se preocupe, você pode gerar um novo código PIX!
+                </p>
+                <button onclick="tryAgain()" style="padding: 1rem 2rem; font-size: 1.1rem; background: linear-gradient(135deg, #ff6b6b, #ee5a6f); color: white; border: none; border-radius: 8px; cursor: pointer;">
+                    🔄 Gerar Novo Pagamento
+                </button>
+            </div>
+        </div>
+
 
         <section class="regras">
             <h3>Regras da Rifa</h3>
